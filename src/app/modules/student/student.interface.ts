@@ -1,5 +1,3 @@
-import { Model } from "mongoose";
-
 export interface IStudent {
   name: {
     firstName: string;
@@ -11,6 +9,6 @@ export interface IStudent {
   gender: "Male" | "Female";
 }
 
-export interface IGetStudentFullName extends Model<IStudent> {
+export interface IGetStudentFullName {
   getStudentFullName(): string;
 }
