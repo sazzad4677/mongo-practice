@@ -372,9 +372,11 @@ db.practice.test.findOne({ name: "meow" });
 db.test.drop();
 ```
 
-// rename
+### rename
 
-db.practice.updateMany({},{$rename:{"favoutiteColor" : "favouriteColor"}})
+```typescript
+db.practice.updateMany({}, { $rename: { favoutiteColor: "favouriteColor" } });
+```
 
 ```
 
