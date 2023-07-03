@@ -1,18 +1,18 @@
-# NoSQLBooster
+<h1 align="center">---Practice Notes---</h1>
 
-### 1. Show Database
+### Show Database
 
 ```typescript
     show databases
 ```
 
-### 2. Change Collection
+### Change Collection
 
 ```typescript
     use collectionName
 ```
 
-### 3. get data in collection
+### get data in collection
 
 ```typescript
 db.getCollection("practice").find();
@@ -20,49 +20,49 @@ db.getCollection("practice").find();
 db.getCollection("practice").find().limit(1);
 ```
 
-### 4. Equal
+### Equal
 
 ```typescript
 db.practice.find({ age: { $eq: 17 } }); // equal check
 ```
 
-### 5. only a single row field filtering with equal
+### only a single row field filtering with equal
 
 ```typescript
 db.practice.find({ favoutiteColor: { $eq: "Red" } }, { favoutiteColor: 1 }); //
 ```
 
-### 6. field Filtering with project and not equal
+### field Filtering with project and not equal
 
 ```typescript
 db.practice.find({ gender: { $ne: "Female" } }).project({ gender: 1, name: 1 });
 ```
 
-### 7. greater than
+### greater than
 
 ```typescript
 db.practice.find({ age: { $gt: 30 } }).project({ name: 1, age: 1 });
 ```
 
-### 8. Greater than equal
+### Greater than equal
 
 ```typescript
 db.practice.find({ age: { $gte: 70 } }).project({ name: 1, age: 1 });
 ```
 
-### 9. // Less than
+### Less than
 
 ```typescript
 db.practice.find({ age: { $lt: 30 } }).project({ name: 1, age: 1 });
 ```
 
-### 10. Less than equal
+### Less than equal
 
 ```typescript
 db.practice.find({ age: { $lte: 30 } }).project({ name: 1, age: 1 });
 ```
 
-### 11. Greater than equal
+### Greater than equal
 
 ```typescript
 // Sorting
@@ -78,7 +78,7 @@ db.practice
   .sort({ age: 1 });
 ```
 
-### 12. Multiple Conditions
+### Multiple Conditions
 
 ```javascript
 db.practice
@@ -87,7 +87,7 @@ db.practice
   .sort({ age: -1 });
 ```
 
-### 13. In (Grab specific value)
+### In (Grab specific value)
 
 ```javascript
 db.practice
@@ -99,7 +99,7 @@ db.practice
     .sort({ \_id: -1 });
 ```
 
-### 14. nin (Remove specific value)
+### nin (Remove specific value)
 
 ```javaScript
 
@@ -117,7 +117,7 @@ db.practice
     .project({ name: 1, age: 1, gender: 1, interests: 1 });
 ```
 
-### 15. and
+### and
 
 ```typescript
 db.practice
@@ -138,7 +138,7 @@ db.practice
   .sort({ age: 1 });
 ```
 
-### 16 or
+### or
 
 ```javascript
 db.practice
@@ -159,7 +159,7 @@ db.practice
   .sort({ age: 1 });
 ```
 
-### 17. When you have same field condition use explicit and
+### When you have same field condition use explicit and
 
 ```typescript
 db.practice
