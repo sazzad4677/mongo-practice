@@ -378,6 +378,193 @@ db.test.drop();
 db.practice.updateMany({}, { $rename: { favoutiteColor: "favouriteColor" } });
 ```
 
+<h1 align="center">---Practice Tasks---</h1>
+
+### Task 1: Find all users who are located in New York.
+
+```typescript
+db.problem_solving.find({ "address.city": "New York" });
 ```
 
+### Task 2: Find the user(s) with the email "johndoe@example.com" and retrieve their favorite movie.
+
+```typescript
+db.problem_solving.find({ email: "johndoe@example.com" });
+```
+
+### Task 3: Find all users with "pizza" as their favorite food and sort them according to age.
+
+```typescript
+db.problem_solving.find({ "favorites.food": "pizza" }).sort({ age: 1 });
+```
+
+### Task 4: Find all users over 30 whose favorite color is "green".
+
+```typescript
+db.problem_solving.find({
+    age: {$gt: 30}
+    "favorites.color": "green"
+})
+```
+
+### Task 5: Count the number of users whose favorite movie is "The Shawshank Redemption."
+
+    ```typescript
+
+db.problem_solving.find({"favorites.movie": "The Shawshank Redemption"}).count()
+
+````
+### Task 6: Update the zipcode of the user with the email "johndoe@example.com" to "10002".
+```typescript
+db.problem_solving.updateOne({email: "johndoe@example.com"}, {
+    $set: {"address.zipcode": "10002"}
+})
+````
+
+### Task 7: Delete the user with the email "alicewilliams@example.com" from the user data.
+
+```typescript
+db.problem_solving.deleteOne({ email: "alicewilliams@example.com" });
+```
+
+### Task 8: Group users by their favorite movie and retrieve the average age in each movie group.
+
+```typescript
+db.problem_solving.aggregate([
+  {
+    $group: { _id: "favorites.movie", avgAge: { $avg: "$age" } },
+  },
+]);
+```
+
+### Task 9: Calculate the average age of users with a favorite " pizza " food.
+
+```typescript
+db.problem_solving.aggregate([
+  {
+    $match: {
+      "favorites.food": "pizza",
+    },
+  },
+  {
+    $group: { _id: null, avgAge: { $avg: "$age" } },
+  },
+]);
+```
+
+### Task 10: Perform a lookup aggregation to retrieve the orders data along with the customer details for each order.
+
+```typescript
+db.createCollection("Resturant"); // creating collection cause I don't have any
+db.problem_solving.aggregate([
+  {
+    $lookup: {
+      from: "Resturant",
+      localField: "_id",
+      foreignField: "_id",
+      as: "details",
+    },
+  },
+]);
+```
+
+<h1 align="center">---More Practice Task---</h1>
+
+### Task 1: Group users by their favorite color and retrieve the count of users in each color group.
+
+```typescript
+db.problem_solving.aggregate([
+  { $group: { _id: "favorites.color", count: { $sum: 1 } } },
+]);
+```
+
+### Task 2: Find the user(s) with the highest age.
+
+```typescript
+// first way
+db.problem_solving.aggregate([
+  {
+    $sort: { age: -1 },
+  },
+  {
+    $limit: 1,
+  },
+]);
+//  with grouping
+db.problem_solving.aggregate([
+  {
+    $group: {
+      _id: null,
+      highestAge: { $max: "$age" },
+      name: { $first: "$name" },
+    },
+  },
+]);
+```
+
+### Task 3: Find the most common favorite food among all users.
+
+```typescript
+db.problem_solving.aggregate([
+  {
+    $group: { _id: "$favorites.food", count: { $sum: 1 } },
+  },
+  {
+    $project: {
+      _id: 0,
+      commonFavFood: "$_id",
+      count: 1,
+    },
+  },
+]);
+```
+
+### Task 4: Calculate the total count of friends across all users.
+
+```typescript
+db.problem_solving.aggregate([
+  {
+    $group: { _id: null, friendsCount: { $sum: { $size: "$friends" } } },
+  },
+  { $project: { _id: 0, friendsCount: 1 } },
+]);
+```
+
+### Task 5: Find the user(s) with the longest name.
+
+```typescript
+db.problem_solving.aggregate([
+  {
+    $project: {
+      name: 1,
+      longestName: { $strLenCP: "$name" },
+    },
+  },
+]);
+```
+
+### Task 6: Calculate each state's total number of users in the address field.
+
+```typescript
+db.problem_solving.aggregate([
+  {
+    $group: { _id: "$address.state", count: { $sum: 1 } },
+  },
+]);
+```
+
+### Task 7: Find the user(s) with the highest number of friends.
+
+```typescript
+db.problem_solving.aggregate([
+  {
+    $project: { friendsCount: { $size: "$friends" }, name: 1 },
+  },
+  {
+    $sort: { friendsCount: -1 },
+  },
+  {
+    $limit: 1,
+  },
+]);
 ```
