@@ -409,17 +409,22 @@ db.problem_solving.find({
 
 ### Task 5: Count the number of users whose favorite movie is "The Shawshank Redemption."
 
-    ```typescript
-
-db.problem_solving.find({"favorites.movie": "The Shawshank Redemption"}).count()
-
-````
-### Task 6: Update the zipcode of the user with the email "johndoe@example.com" to "10002".
 ```typescript
-db.problem_solving.updateOne({email: "johndoe@example.com"}, {
-    $set: {"address.zipcode": "10002"}
-})
-````
+db.problem_solving
+  .find({ "favorites.movie": "The Shawshank Redemption" })
+  .count();
+```
+
+### Task 6: Update the zipcode of the user with the email "johndoe@example.com" to "10002".
+
+```typescript
+db.problem_solving.updateOne(
+  { email: "johndoe@example.com" },
+  {
+    $set: { "address.zipcode": "10002" },
+  }
+);
+```
 
 ### Task 7: Delete the user with the email "alicewilliams@example.com" from the user data.
 
