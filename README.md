@@ -96,7 +96,7 @@ db.practice
         age: { $in: [18, 20] },
     })
     .project({ name: 1, age: 1 })
-    .sort({ \_id: -1 });
+    .sort({ _id: -1 });
 ```
 
 ### nin (Remove specific value)
@@ -106,7 +106,7 @@ db.practice
 db.practice
     .find({ age: { $nin: [18, 20] } })
     .project({ name: 1, age: 1 })
-    .sort({ \_id: -1 });
+    .sort({ _id: -1 });
 
 db.practice
     .find({
@@ -250,7 +250,7 @@ db.practice.find({
 // $set -> not recommanded for array or non premitive value
 db.practice.updateOne(
 // which element you want to update
-{ \_id: ObjectId("6406ad65fc13ae5a400000c7") },
+{ _id: ObjectId("6406ad65fc13ae5a400000c7") },
 // what you want to update
 { $set: { country: "bangladesh" } }, // this way it will add a new field country and it's value
 // options
@@ -263,7 +263,7 @@ db.practice.updateOne(
 ```typescript
 db.practice.updateOne(
   // which element you want to update
-  { \_id: ObjectId("6406ad65fc13ae5a400000c7") },
+  { _id: ObjectId("6406ad65fc13ae5a400000c7") },
   // what you want to update
   { $set: { interests: ["bangladesh"] } }, // this way it will add a new field country and it's value
   // options
@@ -274,7 +274,7 @@ db.practice.updateOne(
 ### $addToSet -> best for new entry to array
 
 ```typescript
-db.practice.updateOne({ \_id: ObjectId("6406ad65fc13ae5a400000c7") }, {
+db.practice.updateOne({ _id: ObjectId("6406ad65fc13ae5a400000c7") }, {
   $addToSet: {
   interests: {
   $each: ["Cooking", "Reading", "Writing"]
@@ -286,7 +286,7 @@ db.practice.updateOne({ \_id: ObjectId("6406ad65fc13ae5a400000c7") }, {
 ### push -> same as js array push
 
 ```typescript
-db.practice.updateOne({ \_id: ObjectId("6406ad65fc13ae5a400000c7") }, {
+db.practice.updateOne({ _id: ObjectId("6406ad65fc13ae5a400000c7") }, {
   $push: {
   interests: {
   $each: ["Cooking", "Reading", "Writing"]
@@ -298,13 +298,13 @@ db.practice.updateOne({ \_id: ObjectId("6406ad65fc13ae5a400000c7") }, {
 ### unset
 
 ```typescript
-db.practice.updateOne({\_id: ObjectId("6406ad65fc13ae5a400000c7")},{$unset:{occupation: ""}})
+db.practice.updateOne({_id: ObjectId("6406ad65fc13ae5a400000c7")},{$unset:{occupation: ""}})
 ```
 
 ### pop -> remove from first -1 , remove from last 1
 
 ```typescript
-db.practice.updateOne({\_id: ObjectId("6406ad65fc13ae5a400000c7")},
+db.practice.updateOne({_id: ObjectId("6406ad65fc13ae5a400000c7")},
   {$pop:{interests: -1}},
 )
 ```
@@ -312,7 +312,7 @@ db.practice.updateOne({\_id: ObjectId("6406ad65fc13ae5a400000c7")},
 ### pull. -- remove a specific value from a field
 
 ```typescript
-db.practice.updateOne({\_id: ObjectId("6406ad65fc13ae5a400000c7")},
+db.practice.updateOne({_id: ObjectId("6406ad65fc13ae5a400000c7")},
 {$pull:{friends: "Mizanur Rahman"}},
 )
 ```
@@ -320,7 +320,7 @@ db.practice.updateOne({\_id: ObjectId("6406ad65fc13ae5a400000c7")},
 ### pullAll -- remove an array of value
 
 ```typescript
-db.practice.updateOne({\_id: ObjectId("6406ad65fc13ae5a400000c7")},
+db.practice.updateOne({_id: ObjectId("6406ad65fc13ae5a400000c7")},
 {$pullAll:{friends: ["Najmus Sakib", "Rasel Ahmed"]}},
 )
 ```
@@ -345,7 +345,7 @@ db.practice.deleteOne({ _id: ObjectId("6406ad65fc13ae5a400000c7") });
 ### Delete Many but with only has specific value
 
 ```typescript
-db.practice.deleteMany({\_id: ObjectId("6406ad65fc13ae5a400000c7")})
+db.practice.deleteMany({_id: ObjectId("6406ad65fc13ae5a400000c7")})
 ```
 
 ### Create Collection
